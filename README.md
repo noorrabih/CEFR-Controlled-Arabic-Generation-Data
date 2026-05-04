@@ -34,7 +34,7 @@ All three prompt CSVs share a core schema and differ in CEFR granularity. Each r
 **File-specific notes:**
 
 - `prompts_with_3cefr_levels_and_vocab.csv` — 161 prompts at three broad bands (`A`, `B`, `C`). Distribution: A=50, B=56, C=55. Useful when running the coarse-grained P1 baseline from the paper.
-- `prompts_with_5cefr_levels_and_vocab.csv` — 272 prompts at five CEFR levels (`A`, `B1`, `B2`, `C1`, `C2`). Distribution: A=50, B1=56, B2=56, C1=55, C2=55. The five-level granularity matches the SAMER lexicon's bands, which is why A1 and A2 are merged into a single `A`. This file has two extra columns (`words_lowvocab`, `words_original`) holding alternative vocabulary candidate sets explored during list construction.
+- `prompts_with_5cefr_levels_and_vocab.csv` — 272 prompts at five CEFR levels (`A`, `B1`, `B2`, `C1`, `C2`). Distribution: A=50, B1=56, B2=56, C1=55, C2=55. The five-level granularity matches the SAMER lexicon's bands, which is why A1 and A2 are merged into a single `A`.
 - `zaebuc_prompts_vocab.csv` — 9 prompts derived from ZAEBUC topics, covering A2 / B1 / B2 / C1.
 
 The vocabulary lists in `words` were built using the pipeline described in §4.4 of the paper: GPT-4o was prompted for candidate vocabulary, the candidates were filtered against the SAMER readability lexicon, and a Sentence-BERT relevance fallback was used when the filtered list was too short.
@@ -74,21 +74,7 @@ evaluation: BAREC readability + linguistic-profile cosine similarity
 
 You can match a generated essay to its source prompt by parsing `topic_id` and `CEFR_level` out of `Document_ID`.
 
-## Quick start
 
-```python
-import pandas as pd, ast
-
-# Load prompts (vocabulary stored as a stringified Python list)
-prompts = pd.read_csv("prompts_with_5cefr_levels_and_vocab.csv")
-prompts["words"] = prompts["words"].apply(ast.literal_eval)
-
-# Load generated essays
-essays = pd.read_csv("generated_essays_6levels_p3.tsv", sep="\t")
-
-# Inspect one CEFR level
-print(prompts.query("CEFR_level == 'B1'").head())
-print(essays.query("Grade == 'B1'").head())
 ```
 
 ## Use cases
@@ -116,7 +102,7 @@ If you use this data, please cite:
 ## Related resources
 
 - **BAREC** readability model: <https://huggingface.co/CAMeL-Lab/readability-arabertv2-d3tok-CE>
-- **SAMER** readability lexicon: Al Khalil et al., 2020.
+- **SAMER** readability lexicon: [Al Khalil et al., 2020.](https://sites.google.com/nyu.edu/samer)
 - **ZAEBUC** corpus: <https://sites.google.com/view/zaebuc/home>
 - **ARWI** dataset: <https://github.com/mbzuai-nlp/arabic-aes-bea25>
 - **CamelParser 2.0**: <https://github.com/CAMeL-Lab/camel_parser>
