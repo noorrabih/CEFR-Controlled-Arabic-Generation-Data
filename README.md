@@ -8,8 +8,8 @@ The release has two parts: **prompt + vocabulary resources** (used to drive cont
 
 ```
 .
-├── prompts_with_3cefr_levels_and_vocab.csv   # 161 prompts at 3 broad bands (A / B / C)
-├── prompts_with_5cefr_levels_and_vocab.csv   # 272 prompts at 5 CEFR levels (A / B1 / B2 / C1 / C2)
+├── prompts_with_3cefr_levels_and_vocab.csv   # 161 ARWI prompts at 3 broad bands (A / B / C)
+├── prompts_with_5cefr_levels_and_vocab.csv   # 272 ARWI prompts at 5 CEFR levels (A / B1 / B2 / C1 / C2)
 ├── zaebuc_prompts_vocab.csv                  # 9 ZAEBUC-derived prompts with vocab
 ├── generated_essays_6levels_p3.tsv           # 322 essays generated under prompt P3 (syntactic profile)
 ├── generated_essays_5levels_p5.tsv           # 272 essays generated under prompt P5 (vocab + syntactic)
